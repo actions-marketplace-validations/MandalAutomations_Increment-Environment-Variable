@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  MAJOR: ${{ github.run_attempt}}
+  MAJOR: ${{ github.run_id}}
   MINOR: 1334
 
 jobs:
