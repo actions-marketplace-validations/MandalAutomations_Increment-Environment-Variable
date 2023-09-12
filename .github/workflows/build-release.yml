@@ -45,15 +45,15 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "evanallen13" 
-          git config --global user.email "evanallen13@gmail"
-
-      - name: Make changes  
-        run: |
-          git add .
-          git commit -m "Release v${{ env.MAJOR }}"
+      - name: Update major release
+        uses: action-pack/github-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN  }}
+        with:
+          tag: "v${{ vars.MAJOR }}"
+          title: "v${{ vars.MAJOR }}"
+          body: "See https://github.com/${{ github.repository }}/releases/tag/v${{ vars.MAJOR }}"
+          commit: "release/v${{ vars.MAJOR }}"
       
       - name: "Increment Major"
         uses: action-pack/increment@v2
