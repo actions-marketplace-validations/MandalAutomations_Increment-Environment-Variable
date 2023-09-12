@@ -11,11 +11,11 @@ inputs:
     description: "Name"
     required: true
 
-  name:
+  RepoId:
     description: "RepoId"
     required: true
 
-  name:
+  EnvironmentName:
     description: "EnvironmentName"
     required: true
 
