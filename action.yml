@@ -3,7 +3,7 @@ author: "evanallen13"
 description: "Action to increment an Environment variable by 1."
 
 branding:
-  icon: 'play-circle'
+  icon: 'play'
   color: 'purple'
 
 inputs:
