@@ -44,6 +44,16 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "evanallen13" 
+          git config --global user.email "evanallen13@gmail"
+
+      - name: Make changes  
+        run: |
+          git add .
+          git commit -m "Release v${{ env.MAJOR }}"
       
       - name: "Increment Major"
         uses: action-pack/increment@v2
