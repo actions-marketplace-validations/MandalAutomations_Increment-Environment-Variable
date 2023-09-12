@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  MAJOR: 034289432890
+  MAJOR: ${{ github.run_attempt}}
   MINOR: 1334
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
         with:
           tag_name: v${{ env.MAJOR }}
           release_name: Release v${{ env.MAJOR }}
@@ -55,15 +55,6 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
-
-      - name: Update major release
-        uses: action-pack/github-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        with:
-          tag: "v${{ env.MAJOR }}"
-          title: "v${{ env.MAJOR }}"
-          commit: "Release v${{ env.MAJOR }}"
 
 
   
