@@ -1,4 +1,4 @@
-import { getInput, setFailed } from "@actions/core";
+import { getInput } from "@actions/core";
 // const github = require("@actions/github");
 
 const name = getInput("name");
