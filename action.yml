@@ -11,6 +11,17 @@ inputs:
     description: "Name"
     required: true
 
+inputs:
+  name:
+    description: "RepoId"
+    required: true
+
+inputs:
+  name:
+    description: "EnvironmentName"
+    required: true
+
+
 runs:
   using: node20
   main: 'dist/index.js'
