@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  MAJOR: ${{ github.run_id}}
+  MAJOR: ${{ vars.MAJOR }}
   MINOR: 1334
 
 jobs:
@@ -55,6 +55,11 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
-
+      
+      - name: "Increment Major"
+        uses: action-pack/increment@v2
+        with:
+          name: 'MAJOR'
+          token: ${{ secrets.PAT_TOKEN }}
 
   
