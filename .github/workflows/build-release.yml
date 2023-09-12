@@ -53,7 +53,7 @@ jobs:
           tag: "v${{ vars.MAJOR }}"
           title: "v${{ vars.MAJOR }}"
           body: "See https://github.com/${{ github.repository }}/releases/tag/v${{ vars.MAJOR }}"
-          commit: "release/v${{ vars.MAJOR }}"
+          commit: "Release v${{ env.MAJOR }}"
       
       - name: "Increment Major"
         uses: action-pack/increment@v2
