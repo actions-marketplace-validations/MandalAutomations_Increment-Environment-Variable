@@ -29,7 +29,7 @@ jobs:
           npm run build
       
       - name: Echo Major
-        run: "v${{ env.MAJOR }}"
+        run: echo "v${{ env.MAJOR }}"
 
       - name: Create Release 
         uses: action-pack/github-release@v2
