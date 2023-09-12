@@ -33,9 +33,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
-          tag: "v${{ env.MAJOR }}.${{ env.MINOR }}"
-          title: "v${{ env.MAJOR }}.${{ env.MINOR }}"
-          commit: "release/v${{ env.MAJOR }}.${{ env.MINOR }}"
+          tag: "v${{ env.MAJOR }}"
+          title: "v${{ env.MAJOR }}"
+          commit: "release/v${{ env.MAJOR }}"
 
 
   
