@@ -18,5 +18,9 @@ const getEnvironmentVariable = async () => {
     })
 }
 
-const environmentVariable = EnvironmentVariable()
-console.log(environmentVariable)
+const run = async () => {
+    const environmentVariable = await getEnvironmentVariable();
+    console.log(environmentVariable)
+}
+
+run();
