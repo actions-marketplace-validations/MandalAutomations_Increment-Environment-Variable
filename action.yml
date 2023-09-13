@@ -27,6 +27,10 @@ inputs:
     description: "RepoName"
     required: true
 
+  Token:
+    description: "Pat Token"
+    required: true
+
 runs:
   using: node20
   main: 'dist/index.js'

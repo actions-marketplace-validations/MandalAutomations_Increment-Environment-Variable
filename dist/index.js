@@ -9753,6 +9753,9 @@ const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)(
 const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
 const ownerName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("OwnerName");
 const repoName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoName");
+const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Token");
+
+const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)();
 
 const getEnvironmentVariable = async () => {
 

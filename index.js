@@ -6,6 +6,9 @@ const environmentName = getInput("EnvironmentName");
 const name = getInput("Name");
 const ownerName = getInput("OwnerName");
 const repoName = getInput("RepoName");
+const token = getInput("Token");
+
+const octokit = getOctokit();
 
 const getEnvironmentVariable = async () => {
 
