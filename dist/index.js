@@ -9748,7 +9748,7 @@ var __webpack_exports__ = {};
 
 
 
-const repoId= (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
+const repoId = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
 const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
 const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
 const value = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Value");
@@ -9774,11 +9774,23 @@ const updateEnvironmentVariable = async () => {
         value: value
     })
 }
+const createEnvironmentVariable = async () => {
+
+    let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
+
+    return undefined.octokit.request(url, {
+        name: name,
+        value: value
+    })
+}
+
 
 const run = async () => {
-    await updateEnvironmentVariable();
-    const environmentVariable = await getEnvironmentVariable();
-    console.log(environmentVariable)
+    // await updateEnvironmentVariable();
+    // const environmentVariable = await getEnvironmentVariable();
+    // console.log(environmentVariable)
+
+    createEnvironmentVariable();
 }
 
 run();

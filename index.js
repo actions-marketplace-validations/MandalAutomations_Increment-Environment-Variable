@@ -1,7 +1,7 @@
 import { getInput, setFailed } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
 
-const repoId= getInput("RepoId");
+const repoId = getInput("RepoId");
 const environmentName = getInput("EnvironmentName");
 const name = getInput("Name");
 const value = getInput("Value");
@@ -27,11 +27,23 @@ const updateEnvironmentVariable = async () => {
         value: value
     })
 }
+const createEnvironmentVariable = async () => {
+
+    let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
+
+    return this.octokit.request(url, {
+        name: name,
+        value: value
+    })
+}
+
 
 const run = async () => {
-    await updateEnvironmentVariable();
-    const environmentVariable = await getEnvironmentVariable();
-    console.log(environmentVariable)
+    // await updateEnvironmentVariable();
+    // const environmentVariable = await getEnvironmentVariable();
+    // console.log(environmentVariable)
+
+    createEnvironmentVariable();
 }
 
 run();
