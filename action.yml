@@ -27,7 +27,6 @@ inputs:
     description: "RepoName"
     required: true
 
-
 runs:
   using: node20
   main: 'dist/index.js'
