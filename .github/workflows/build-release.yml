@@ -22,7 +22,7 @@ jobs:
 
       - name: LS
         run: |
-          ls -la
+          cat action.yml
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
