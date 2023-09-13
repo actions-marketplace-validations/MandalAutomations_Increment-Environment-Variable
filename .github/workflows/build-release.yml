@@ -20,6 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: LS
+        run: |
+          ls -la
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -31,18 +35,18 @@ jobs:
           npm run build
           ls -la
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
-        with:
-          tag_name: v${{ env.MAJOR }}
-          release_name: Release v${{ env.MAJOR }}
-          body: |
-            Changes in this Release
-          draft: false
-          prerelease: false
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
+      #   with:
+      #     tag_name: v${{ env.MAJOR }}
+      #     release_name: Release v${{ env.MAJOR }}
+      #     body: |
+      #       Changes in this Release
+      #     draft: false
+      #     prerelease: false
 
       # - name: Upload Release Asset
       #   id: upload-release-asset 
@@ -50,10 +54,10 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: "Increment Major"
-        uses: action-pack/increment@v2
-        with:
-          name: 'MAJOR'
-          token: ${{ secrets.PAT_TOKEN }}
+      # - name: "Increment Major"
+      #   uses: action-pack/increment@v2
+      #   with:
+      #     name: 'MAJOR'
+      #     token: ${{ secrets.PAT_TOKEN }}
 
   
