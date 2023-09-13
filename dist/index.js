@@ -9751,6 +9751,7 @@ var __webpack_exports__ = {};
 const repoId= (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
 const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
 const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
+const value = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Value");
 const ownerName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("OwnerName");
 const repoName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoName");
 const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Token");
@@ -9765,6 +9766,18 @@ const getEnvironmentVariable = async () => {
         owner: ownerName,
         repo: repoName,
         name: name
+    })
+}
+
+updateEnvironmentVariable = async () => {
+
+    let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
+
+    return undefined.octokit.request(url, {
+        owner: ownerName,
+        repo: repoName,
+        name: name,
+        value: value
     })
 }
 

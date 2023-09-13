@@ -10,6 +10,10 @@ inputs:
   Name:
     description: "Name"
     required: true
+  
+  Value:
+    description: "Value"
+    required: true
 
   RepoId:
     description: "RepoId"
