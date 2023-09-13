@@ -19,6 +19,14 @@ inputs:
     description: "EnvironmentName"
     required: true
 
+  OwnerName:
+    description: "OwnerName"
+    required: true
+
+  RepoName:
+    description: "RepoName"
+    required: true
+
 
 runs:
   using: node20

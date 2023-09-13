@@ -4,8 +4,10 @@ import { context, getOctokit } from "@actions/github";
 const repoId= getInput("RepoId");
 const environmentName = getInput("EnvironmentName");
 const name = getInput("Name");
+const ownerName = getInput("OwnerName");
+const repoName = getInput("RepoName");
 
-getEnvironmentVariable = async (environmentName = this.environmentName, repoId = this.repoId, repoName=this.repoName, name=this.name, ownerName=this.ownerName) => {
+const getEnvironmentVariable = async () => {
 
     let url = `GET /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
@@ -15,3 +17,5 @@ getEnvironmentVariable = async (environmentName = this.environmentName, repoId =
         name: name
     })
 }
+
+getEnvironmentVariable
