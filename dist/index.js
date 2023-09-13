@@ -9769,7 +9769,7 @@ const getEnvironmentVariable = async () => {
     })
 }
 
-updateEnvironmentVariable = async () => {
+const updateEnvironmentVariable = async () => {
 
     let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
@@ -9782,6 +9782,7 @@ updateEnvironmentVariable = async () => {
 }
 
 const run = async () => {
+    await updateEnvironmentVariable();
     const environmentVariable = await getEnvironmentVariable();
     console.log(environmentVariable)
 }
