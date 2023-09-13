@@ -9774,8 +9774,6 @@ const updateEnvironmentVariable = async () => {
     let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
     return octokit.request(url, {
-        owner: ownerName,
-        repo: repoName,
         name: name,
         value: value
     })
