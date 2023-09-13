@@ -8,27 +8,19 @@ branding:
 
 inputs:
   Name:
-    description: "Name"
+    description: "Name of variable to increment"
     required: true
   
   Value:
     description: "Value"
-    required: true
+    required: false
 
   RepoId:
-    description: "RepoId"
+    description: "Repositoy Id can be found using github.repository_id"
     required: true
 
   EnvironmentName:
-    description: "EnvironmentName"
-    required: true
-
-  OwnerName:
-    description: "OwnerName"
-    required: true
-
-  RepoName:
-    description: "RepoName"
+    description: "Name of the environment to update"
     required: true
 
   Token:
