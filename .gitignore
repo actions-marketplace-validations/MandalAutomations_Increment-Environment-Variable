@@ -107,5 +107,3 @@ typings/
 .vscode
 
 gitpush.sh
-
-dist
