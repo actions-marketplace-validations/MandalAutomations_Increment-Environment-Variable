@@ -9763,8 +9763,6 @@ const getEnvironmentVariable = async () => {
     let url = `GET /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
     return octokit.request(url, {
-        owner: ownerName,
-        repo: repoName,
         name: name
     })
 }
