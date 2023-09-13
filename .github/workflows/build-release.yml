@@ -47,18 +47,18 @@ jobs:
           git commit -m "Release v${{ vars.MAJOR }}"
           git push origin release/v${{ vars.MAJOR }}
       
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
-      #   with:
-      #     tag_name: v${{ env.MAJOR }}
-      #     release_name: Release v${{ env.MAJOR }}
-      #     body: |
-      #       Changes in this Release
-      #     draft: false
-      #     prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
+        with:
+          tag_name: v${{ env.MAJOR }}
+          release_name: Release v${{ env.MAJOR }}
+          body: |
+            Changes in this Release
+          draft: false
+          prerelease: false
 
       # - name: Upload Release Asset
       #   id: upload-release-asset 
@@ -66,10 +66,10 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # - name: "Increment Major"
-      #   uses: action-pack/increment@v2
-      #   with:
-      #     name: 'MAJOR'
-      #     token: ${{ secrets.PAT_TOKEN }}
+      - name: "Increment Major"
+        uses: action-pack/increment@v2
+        with:
+          name: 'MAJOR'
+          token: ${{ secrets.PAT_TOKEN }}
 
   
