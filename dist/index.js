@@ -9751,8 +9751,10 @@ var __webpack_exports__ = {};
 const repoId= (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
 const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
 const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
+const ownerName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("OwnerName");
+const repoName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoName");
 
-getEnvironmentVariable = async (environmentName = undefined.environmentName, repoId = undefined.repoId, repoName=undefined.repoName, name=undefined.name, ownerName=undefined.ownerName) => {
+const getEnvironmentVariable = async () => {
 
     let url = `GET /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
@@ -9763,5 +9765,6 @@ getEnvironmentVariable = async (environmentName = undefined.environmentName, rep
     })
 }
 
+getEnvironmentVariable
 })();
 
