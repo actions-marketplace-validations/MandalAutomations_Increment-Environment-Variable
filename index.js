@@ -8,7 +8,7 @@ const ownerName = getInput("OwnerName");
 const repoName = getInput("RepoName");
 const token = getInput("Token");
 
-const octokit = getOctokit();
+const octokit = getOctokit(token);
 
 const getEnvironmentVariable = async () => {
 
