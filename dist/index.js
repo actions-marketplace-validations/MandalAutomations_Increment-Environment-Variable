@@ -9778,7 +9778,7 @@ const createEnvironmentVariable = async () => {
 
     let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
 
-    return undefined.octokit.request(url, {
+    return octokit.request(url, {
         name: name,
         value: value
     })
