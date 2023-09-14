@@ -37,7 +37,7 @@ const createEnvironmentVariable = async (value=value) => {
     })
 }
 
-existsEnvironmentVariable = async () => {
+const existsEnvironmentVariable = async () => {
     let exists = false;
 
     try {
