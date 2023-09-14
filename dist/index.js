@@ -9765,7 +9765,7 @@ const getEnvironmentVariable = async () => {
     })
 }
 
-const updateEnvironmentVariable = async () => {
+const updateEnvironmentVariable = async (value=value) => {
 
     let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
 
@@ -9805,7 +9805,7 @@ const incrementEnvironmentVariable = async () => {
         variable = variable.data.value
         if (variable.match(/^[0-9]+$/)) {
             variable = (parseInt(variable) + 1).toString()
-            undefined.updateEnvironmentVariable(variable)
+            updateEnvironmentVariable(variable)
         }
     }else{
         createEnvironmentVariable((1).toString())
