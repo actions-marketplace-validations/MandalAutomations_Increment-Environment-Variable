@@ -1,6 +1,7 @@
 # Increment Environment Variable
 
 This is a GitHub Action that increments an environment variable.
+If environment variable does not exist, it will create it and set it to 1.
 
 ## Usage
 
@@ -13,10 +14,15 @@ This is a GitHub Action that increments an environment variable.
         RepoId: ${{ github.repository_id }}
         Token: ${{ secrets.PAT_TOKEN }}
 ```
-
 ## Inputs
-### Required
-- `Name`: Name for the variable to increment
-- `EnvironmentName`: Environment Name
-- `RepoId`: Repository ID can be found using  ${{ github.repository_id }}
-- `Token`: Personal Access Token (PAT)
+### Name: 
+`Required` `String` Name for the variable to increment
+
+### EnvironmentName: 
+`Required` `String` Environment Name
+
+### RepoId: 
+`Required` `String` Repository ID can be found using  ${{ github.repository_id }}
+
+### Token: 
+`Required` `String` Personal Access Token (PAT)
