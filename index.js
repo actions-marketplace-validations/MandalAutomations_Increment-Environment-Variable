@@ -3,7 +3,7 @@ import { context, getOctokit } from "@actions/github";
 
 const repoId = getInput("RepoId");
 const environmentName = getInput("EnvironmentName");
-const name = getInput("Name");
+const name = getInput("Name").replace(/\s/g, '_');;
 const value = getInput("Value");
 const token = getInput("Token");
 
@@ -63,14 +63,10 @@ const incrementEnvironmentVariable = async () => {
     } else {
         createEnvironmentVariable((1).toString())
     }
-
 }
-
-
 
 try {
     await incrementEnvironmentVariable();
 } catch (error) {
     setFailed(error.message);
 }
-

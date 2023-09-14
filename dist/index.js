@@ -9706,7 +9706,7 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 
 const repoId = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
 const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
-const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
+const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name").replace(/\s/g, '_');;
 const value = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Value");
 const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Token");
 
@@ -9766,18 +9766,13 @@ const incrementEnvironmentVariable = async () => {
     } else {
         createEnvironmentVariable((1).toString())
     }
-
 }
-
-
 
 try {
     await incrementEnvironmentVariable();
 } catch (error) {
     (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
-
-
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
 
