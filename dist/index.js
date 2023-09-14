@@ -9695,6 +9695,94 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
 
 /***/ }),
 
+/***/ 3540:
+/***/ ((__webpack_module__, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
+
+__nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(115);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3007);
+
+
+
+const repoId = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
+const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
+const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
+const value = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Value");
+const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Token");
+
+const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
+
+const getEnvironmentVariable = async () => {
+
+    let url = `GET /repositories/${repoId}/environments/${environmentName}/variables/${name}`
+
+    return octokit.request(url, {
+        name: name
+    })
+}
+
+const updateEnvironmentVariable = async (value = value) => {
+
+    let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
+
+    return octokit.request(url, {
+        name: name,
+        value: value
+    })
+}
+const createEnvironmentVariable = async (value = value) => {
+
+    let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
+
+    return octokit.request(url, {
+        name: name,
+        value: value
+    })
+}
+
+const existsEnvironmentVariable = async () => {
+    let exists = false;
+
+    try {
+        const response = await getEnvironmentVariable()
+        exists = (response.status === 200) ? true : false
+    } catch (error) {
+        exists = false
+    }
+
+    return exists
+}
+
+const incrementEnvironmentVariable = async () => {
+    const exists = await existsEnvironmentVariable();
+
+    if (exists) {
+        let variable = await getEnvironmentVariable()
+        variable = variable.data.value
+        if (variable.match(/^[0-9]+$/)) {
+            variable = (parseInt(variable) + 1).toString()
+            updateEnvironmentVariable(variable)
+        }
+    } else {
+        createEnvironmentVariable((1).toString())
+    }
+
+}
+
+
+
+try {
+    await incrementEnvironmentVariable();
+} catch (error) {
+    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
+}
+
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } }, 1);
+
+/***/ }),
+
 /***/ 2020:
 /***/ ((module) => {
 
@@ -9735,94 +9823,84 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ }
 /******/ 
 /************************************************************************/
+/******/ /* webpack/runtime/async module */
+/******/ (() => {
+/******/ 	var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
+/******/ 	var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
+/******/ 	var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
+/******/ 	var resolveQueue = (queue) => {
+/******/ 		if(queue && !queue.d) {
+/******/ 			queue.d = 1;
+/******/ 			queue.forEach((fn) => (fn.r--));
+/******/ 			queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
+/******/ 		}
+/******/ 	}
+/******/ 	var wrapDeps = (deps) => (deps.map((dep) => {
+/******/ 		if(dep !== null && typeof dep === "object") {
+/******/ 			if(dep[webpackQueues]) return dep;
+/******/ 			if(dep.then) {
+/******/ 				var queue = [];
+/******/ 				queue.d = 0;
+/******/ 				dep.then((r) => {
+/******/ 					obj[webpackExports] = r;
+/******/ 					resolveQueue(queue);
+/******/ 				}, (e) => {
+/******/ 					obj[webpackError] = e;
+/******/ 					resolveQueue(queue);
+/******/ 				});
+/******/ 				var obj = {};
+/******/ 				obj[webpackQueues] = (fn) => (fn(queue));
+/******/ 				return obj;
+/******/ 			}
+/******/ 		}
+/******/ 		var ret = {};
+/******/ 		ret[webpackQueues] = x => {};
+/******/ 		ret[webpackExports] = dep;
+/******/ 		return ret;
+/******/ 	}));
+/******/ 	__nccwpck_require__.a = (module, body, hasAwait) => {
+/******/ 		var queue;
+/******/ 		hasAwait && ((queue = []).d = 1);
+/******/ 		var depQueues = new Set();
+/******/ 		var exports = module.exports;
+/******/ 		var currentDeps;
+/******/ 		var outerResolve;
+/******/ 		var reject;
+/******/ 		var promise = new Promise((resolve, rej) => {
+/******/ 			reject = rej;
+/******/ 			outerResolve = resolve;
+/******/ 		});
+/******/ 		promise[webpackExports] = exports;
+/******/ 		promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
+/******/ 		module.exports = promise;
+/******/ 		body((deps) => {
+/******/ 			currentDeps = wrapDeps(deps);
+/******/ 			var fn;
+/******/ 			var getResult = () => (currentDeps.map((d) => {
+/******/ 				if(d[webpackError]) throw d[webpackError];
+/******/ 				return d[webpackExports];
+/******/ 			}))
+/******/ 			var promise = new Promise((resolve) => {
+/******/ 				fn = () => (resolve(getResult));
+/******/ 				fn.r = 0;
+/******/ 				var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
+/******/ 				currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
+/******/ 			});
+/******/ 			return fn.r ? promise : getResult();
+/******/ 		}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
+/******/ 		queue && (queue.d = 0);
+/******/ 	};
+/******/ })();
+/******/ 
 /******/ /* webpack/runtime/compat */
 /******/ 
 /******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(115);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3007);
-
-
-
-const repoId = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("RepoId");
-const environmentName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("EnvironmentName");
-const name = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Name");
-const value = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Value");
-const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("Token");
-
-const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(token);
-
-const getEnvironmentVariable = async () => {
-
-    let url = `GET /repositories/${repoId}/environments/${environmentName}/variables/${name}`
-
-    return octokit.request(url, {
-        name: name
-    })
-}
-
-const updateEnvironmentVariable = async (value=value) => {
-
-    let url = `PATCH /repositories/${repoId}/environments/${environmentName}/variables/${name}`
-
-    return octokit.request(url, {
-        name: name,
-        value: value
-    })
-}
-const createEnvironmentVariable = async (value=value) => {
-
-    let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
-
-    return octokit.request(url, {
-        name: name,
-        value: value
-    })
-}
-
-const existsEnvironmentVariable = async () => {
-    let exists = false;
-
-    try {
-        const response = await getEnvironmentVariable()
-        exists = (response.status === 200) ? true : false
-    } catch (error) {
-        exists = false
-    }
-
-    return exists
-}
-
-const incrementEnvironmentVariable = async () => {
-    const exists = await existsEnvironmentVariable();
-
-    if (exists) {
-        let variable = await getEnvironmentVariable()
-        variable = variable.data.value
-        if (variable.match(/^[0-9]+$/)) {
-            variable = (parseInt(variable) + 1).toString()
-            updateEnvironmentVariable(variable)
-        }
-    }else{
-        createEnvironmentVariable((1).toString())
-    }
-
-}
-
-
-const run = async () => {
-    try {
-        await incrementEnvironmentVariable();
-    } catch (error) {
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
-    }
-}
-
-run();
-
-})();
-
+/******/ 
+/******/ // startup
+/******/ // Load entry module and return exports
+/******/ // This entry module used 'module' so it can't be inlined
+/******/ var __webpack_exports__ = __nccwpck_require__(3540);
+/******/ __webpack_exports__ = await __webpack_exports__;
+/******/ 
