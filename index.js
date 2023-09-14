@@ -27,7 +27,7 @@ const updateEnvironmentVariable = async () => {
         value: value
     })
 }
-const createEnvironmentVariable = async () => {
+const createEnvironmentVariable = async (value=value) => {
 
     let url = `POST /repositories/${repoId}/environments/${environmentName}/variables`
 
@@ -37,13 +37,42 @@ const createEnvironmentVariable = async () => {
     })
 }
 
+existsEnvironmentVariable = async () => {
+    let exists = false;
+
+    try {
+        const response = await getEnvironmentVariable()
+        exists = (response.status === 200) ? true : false
+    } catch (error) {
+        exists = false
+    }
+
+    return exists
+}
+
+const incrementEnvironmentVariable = async () => {
+    const exists = await existsEnvironmentVariable();
+
+    if (exists) {
+        let variable = await getEnvironmentVariable()
+        variable = variable.data.value
+        if (variable.match(/^[0-9]+$/)) {
+            variable = (parseInt(variable) + 1).toString()
+            this.updateEnvironmentVariable(variable)
+        }
+    }else{
+        createEnvironmentVariable((1).toString())
+    }
+
+}
+
 
 const run = async () => {
-    // await updateEnvironmentVariable();
-    // const environmentVariable = await getEnvironmentVariable();
-    // console.log(environmentVariable)
-
-    createEnvironmentVariable();
+    try {
+        await incrementEnvironmentVariable();
+    } catch (error) {
+        setFailed(error.message);
+    }
 }
 
 run();
