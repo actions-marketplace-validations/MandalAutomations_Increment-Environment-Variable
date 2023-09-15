@@ -14,7 +14,7 @@ If environment variable does not exist, it will create it and set it to 1.
     Token: ${{ secrets.PAT_TOKEN }}
 ```
 ### Increment variable in multiple environments use matrix
-``````YAML 
+```YAML 
 increment:
     runs-on: ubuntu-latest
     strategy:
